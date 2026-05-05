@@ -1,8 +1,1 @@
 node_modules/
-.wrangler/
-.dev.vars
-wrangler.toml
-dist/
-backtest/data/
-*.log
-.DS_Store
