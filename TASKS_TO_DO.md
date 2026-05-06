@@ -36,8 +36,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Assicurati che `package.json` rifletta il nuovo nome del progetto (`jules-telegram-cockpit`).
 **Dipendenze:** Nessuna. Bloccante per tutti gli altri task.
 **Acceptance Criteria:**
-*   [ ] Il comando `npm run build` o `npx tsc --noEmit` completa senza errori.
-*   [ ] Nessuna traccia di logica legacy nel codice.
+*   [x] Il comando `npm run build` o `npx tsc --noEmit` completa senza errori.
+*   [x] Nessuna traccia di logica legacy nel codice.
 
 ### [TSK-1.2] Configurazione Tooling Enterprise (Linting, Formatting, Testing)
 **Obiettivo:** Stabilire e forzare regole di stile e qualità del codice a livello di repository.
@@ -48,8 +48,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Crea i comandi npm (`lint`, `format`, `test`).
 **Dipendenze:** Segue TSK-1.1.
 **Acceptance Criteria:**
-*   [ ] Esecuzione di `npm run lint` passa senza errori.
-*   [ ] Scritto un test "dummy" in Vitest che dimostra che il test runner funziona correttamente.
+*   [x] Esecuzione di `npm run lint` passa senza errori.
+*   [x] Scritto un test "dummy" in Vitest che dimostra che il test runner funziona correttamente.
 
 ### [TSK-1.3] Definizione dello Schema Database D1
 **Obiettivo:** Strutturare il database relazionale distribuito per supportare la logica dell'applicazione.
@@ -61,8 +61,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Aggiungi indici per ottimizzare le query (`telegram_topic_id`, `status`).
 **Dipendenze:** Segue TSK-1.1.
 **Acceptance Criteria:**
-*   [ ] Il file `schema.sql` contiene SQL valido (dialetto SQLite).
-*   [ ] Le relazioni e le foreign key (se applicate) o i vincoli logici sono chiari e corretti.
+*   [x] Il file `schema.sql` contiene SQL valido (dialetto SQLite).
+*   [x] Le relazioni e le foreign key (se applicate) o i vincoli logici sono chiari e corretti.
 
 ### [TSK-1.4] Binding e Environment Setup
 **Obiettivo:** Collegare l'infrastruttura Cloudflare all'applicazione in modo sicuro.
@@ -72,8 +72,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Aggiorna l'interfaccia `Env` in `src/index.ts` per riflettere questi bindings.
 **Dipendenze:** Segue TSK-1.3.
 **Acceptance Criteria:**
-*   [ ] L'interfaccia `Env` è rigorosamente tipizzata.
-*   [ ] Nessun token in chiaro è presente nel repository.
+*   [x] L'interfaccia `Env` è rigorosamente tipizzata.
+*   [x] Nessun token in chiaro è presente nel repository.
 
 ## 🔒 FASE 2: Zero-Trust Security e Gestione Whitelist
 
