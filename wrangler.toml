@@ -9,4 +9,4 @@ database_id = "your-d1-database-id-here"
 
 [vars]
 ENVIRONMENT = "production"
-# TELEGRAM_BOT_TOKEN and JULES_API_KEY should be set as secrets
+# TELEGRAM_BOT_TOKEN, JULES_API_KEY, and TELEGRAM_SUPERGROUP_ID should be set as secrets
