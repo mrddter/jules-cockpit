@@ -87,9 +87,9 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Se l'ID non è presente, droppa la richiesta e ritorna silenziosamente `200 OK` (non rispondere a Telegram per evitare di sprecare API calls e dare feedback ad attaccanti).
 **Dipendenze:** Segue TSK-1.4.
 **Acceptance Criteria:**
-*   [ ] Il middleware valida l'utente interrogando il D1.
-*   [ ] In caso di fallimento, la pipeline di Hono si interrompe senza loggare errori di crash.
-*   [ ] Scritto unit test (mockando D1) che prova che un utente non in lista riceve 200 ma non passa al controller.
+*   [x] Il middleware valida l'utente interrogando il D1.
+*   [x] In caso di fallimento, la pipeline di Hono si interrompe senza loggare errori di crash.
+*   [x] Scritto unit test (mockando D1) che prova che un utente non in lista riceve 200 ma non passa al controller.
 
 ### [TSK-2.2] Auto-Kick degli Intrusi (new_chat_members)
 **Obiettivo:** Proteggere il Supergruppo Telegram espellendo automaticamente chiunque entri e non sia nella whitelist.
@@ -100,8 +100,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
     *   Se assente, istanzia il client Telegram (TSK-1.1/TSK-4.x) e invoca il metodo API di Telegram `banChatMember` o `kickChatMember`.
 **Dipendenze:** Segue TSK-2.1.
 **Acceptance Criteria:**
-*   [ ] La logica isola correttamente i nuovi membri dal payload.
-*   [ ] Invia la chiamata API di espulsione solo per gli utenti non autorizzati.
+*   [x] La logica isola correttamente i nuovi membri dal payload.
+*   [x] Invia la chiamata API di espulsione solo per gli utenti non autorizzati.
 
 ### [TSK-2.3] Script di Seeding Iniziale
 **Obiettivo:** Fornire un modo riproducibile per popolare la whitelist iniziale durante il deployment.
@@ -110,8 +110,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Documenta nel README il comando per eseguire il seeding (`wrangler d1 execute ...`).
 **Dipendenze:** Segue TSK-1.3.
 **Acceptance Criteria:**
-*   [ ] File `seed_admins.sql` creato.
-*   [ ] Istruzioni inserite nella documentazione.
+*   [x] File `seed_admins.sql` creato.
+*   [x] Istruzioni inserite nella documentazione.
 
 ## 🔌 FASE 3: Sviluppo del Jules API Client
 
