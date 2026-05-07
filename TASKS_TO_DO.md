@@ -127,8 +127,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
     *   La gestione standardizzata degli errori HTTP (se `!response.ok`, lancia un errore descrittivo parsando il JSON di errore se presente).
 **Dipendenze:** Nessuna specifica.
 **Acceptance Criteria:**
-*   [ ] Modulo esporta la classe/interfaccia `JulesClient`.
-*   [ ] Metodo HTTP wrapper centralizzato per gestire auth ed error handling.
+*   [x] Modulo esporta la classe/interfaccia `JulesClient`.
+*   [x] Metodo HTTP wrapper centralizzato per gestire auth ed error handling.
 
 ### [TSK-3.2] Implementazione Metodi Sessione (Sessions)
 **Obiettivo:** Supportare la creazione e la lettura delle sessioni.
@@ -137,8 +137,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Implementa `getSession(sessionId: string): Promise<Session>`. Esegue una `GET /v1alpha/sessions/{sessionId}`.
 **Dipendenze:** Segue TSK-3.1.
 **Acceptance Criteria:**
-*   [ ] Tipi per `Session` (id, title, sourceContext) definiti.
-*   [ ] I metodi effettuano correttamente le chiamate (dimostrabile tramite unit test con mock fetch).
+*   [x] Tipi per `Session` (id, title, sourceContext) definiti.
+*   [x] I metodi effettuano correttamente le chiamate (dimostrabile tramite unit test con mock fetch).
 
 ### [TSK-3.3] Implementazione Metodi Attività (Activities)
 **Obiettivo:** Gestire la comunicazione (messaggi e piani) all'interno di una sessione.
@@ -148,8 +148,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Implementa `listActivities(sessionId: string, pageSize?: number): Promise<Activity[]>`. Esegue una `GET /v1alpha/sessions/{sessionId}/activities`.
 **Dipendenze:** Segue TSK-3.2.
 **Acceptance Criteria:**
-*   [ ] Tipi per le variazioni di `Activity` (`agentMessaged`, `planGenerated`, `planApproved`, `userMessaged`) rigorosamente definiti tramite Union Types in TypeScript.
-*   [ ] Payload formattati correttamente.
+*   [x] Tipi per le variazioni di `Activity` (`agentMessaged`, `planGenerated`, `planApproved`, `userMessaged`) rigorosamente definiti tramite Union Types in TypeScript.
+*   [x] Payload formattati correttamente.
 
 ## 📡 FASE 4: Ricezione Webhook e Gestione Telegram Topics (1 Repo = 1 Topic)
 
