@@ -187,7 +187,7 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Fai una query su D1 `repositories` usando il `telegram_topic_id` per determinare il `repo_name` su cui operare.
 **Dipendenze:** TSK-2.1
 **Acceptance Criteria:**
-*   [ ] Nessuna azione viene eseguita fuori dai topic dedicati.
+*   [x] Nessuna azione viene eseguita fuori dai topic dedicati.
 
 ### [TSK-5.2] Gestione Comandi del Ciclo di Vita (/new, /close, /list, /open)
 **Obiettivo:** Permettere all'utente di comandare l'agente Jules.
@@ -205,8 +205,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
     *   Archivia l'attuale sessione attiva. Setta `<session_id>` come `active`.
 **Dipendenze:** TSK-5.1, TSK-3.2
 **Acceptance Criteria:**
-*   [ ] L'integrità del database è mantenuta: massimo 1 sessione `active` per `telegram_topic_id`.
-*   [ ] I comandi rispondono reattivamente in chat.
+*   [x] L'integrità del database è mantenuta: massimo 1 sessione `active` per `telegram_topic_id`.
+*   [x] I comandi rispondono reattivamente in chat.
 
 ### [TSK-5.3] Inoltro Trasparente dei Messaggi (Chat)
 **Obiettivo:** Trasformare i normali messaggi di testo nel topic in input per Jules.
@@ -217,7 +217,7 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
     *   Se presente: Chiama `JulesClient.sendUserMessage(sessionId, text)`. Non bloccare l'invio, esegui in background `c.executionCtx.waitUntil()`.
 **Dipendenze:** TSK-5.2, TSK-3.3
 **Acceptance Criteria:**
-*   [ ] I messaggi vengono inviati alle API di Jules con successo.
+*   [x] I messaggi vengono inviati alle API di Jules con successo.
 
 ## 🔄 FASE 6: Rendering delle Attività e Approvazione Piani
 
