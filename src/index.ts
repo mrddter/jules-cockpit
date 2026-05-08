@@ -15,6 +15,11 @@ import { TelegramBot } from "./telegram/bot.js";
 
 const app = new Hono<{ Bindings: Env }>();
 
+const escapeMarkdownV2 = (text: string) => {
+	// biome-ignore lint/complexity/noUselessEscapeInRegex: This specific regex needs to escape the [ bracket safely.
+	return text.replace(/([_*\[\]()~`>#+\-=|{}.!])/g, "\\$1");
+};
+
 app.get("/", (c) => c.text("Jules Telegram Cockpit OK"));
 
 app.post("/webhook/telegram", authMiddleware, telegramWebhookHandler);
@@ -55,15 +60,15 @@ export default {
 
 					for (const activity of newActivities) {
 						if (activity.type === "agentMessaged") {
-							await bot.sendMessage(
-								topicId,
-								`🤖 Jules:\n${activity.agentMessage}`,
-							);
+							const msgText = `🤖 *Jules:*\n${escapeMarkdownV2(activity.agentMessage)}`;
+							await bot.sendMessage(topicId, msgText, {
+								parse_mode: "MarkdownV2",
+							});
 						} else if (activity.type === "planGenerated") {
 							const stepsText = activity.plan.steps
-								.map((step) => `- ${step.description}`)
+								.map((step) => `\\- ${escapeMarkdownV2(step.description)}`)
 								.join("\n");
-							const messageText = `📋 Nuovo Piano Generato:\n\n${stepsText}`;
+							const messageText = `📋 *Nuovo Piano Generato:*\n\n${stepsText}`;
 
 							const inline_keyboard = [
 								[
@@ -80,6 +85,7 @@ export default {
 
 							await bot.sendMessage(topicId, messageText, {
 								reply_markup: { inline_keyboard },
+								parse_mode: "MarkdownV2",
 							});
 						} else if (activity.type === "userMessaged") {
 							// Usually we don't need to re-render what the user just typed, but if it comes from somewhere else we could.
