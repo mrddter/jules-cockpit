@@ -229,7 +229,7 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Per ogni Activity parsata, esegui il rendering in Telegram.
 **Dipendenze:** TSK-3.3, TSK-4.1.
 **Acceptance Criteria:**
-*   [ ] I messaggi di Jules raggiungono il Topic corretto.
+*   [x] I messaggi di Jules raggiungono il Topic corretto.
 
 ### [TSK-6.2] Rendering Messaggi Agente (agentMessaged)
 **Obiettivo:** Mostrare le comunicazioni descrittive dell'agente.
@@ -238,7 +238,7 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Chiama `telegram.sendMessage(topic_id, "🤖 Jules:\n" + agentMessage)`.
 **Dipendenze:** TSK-6.1
 **Acceptance Criteria:**
-*   [ ] Formattazione MarkdownV2 gestita in sicurezza (facendo escaping dove necessario).
+*   [x] Formattazione MarkdownV2 gestita in sicurezza (facendo escaping dove necessario).
 
 ### [TSK-6.3] Gestione Piani (planGenerated) e Inline Keyboards
 **Obiettivo:** Gestire la UI di approvazione dei piani proposti dall'AI.
@@ -251,7 +251,7 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
     *   `❌ Rifiuta` -> Callback data: `reject_plan:<plan_id>:<session_id>`.
 **Dipendenze:** TSK-6.2.
 **Acceptance Criteria:**
-*   [ ] Il messaggio con il piano viene inviato con i bottoni corretti.
+*   [x] Il messaggio con il piano viene inviato con i bottoni corretti.
 
 ### [TSK-6.4] Gestione Callback Queries (Approvazione Piani)
 **Obiettivo:** Catturare il click dell'utente e comunicare l'esito a Jules.
@@ -263,8 +263,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Aggiorna il messaggio originale su Telegram (usando `editMessageText` e svuotando la `reply_markup`) in "✅ Piano approvato da {utente}" per evitare double-clicks o click obsoleti.
 **Dipendenze:** TSK-6.3, TSK-3.3.
 **Acceptance Criteria:**
-*   [ ] Il sistema invia con successo il comando di approvazione alle API di Jules.
-*   [ ] La UI su Telegram è consistente (il pulsante scompare post-click).
+*   [x] Il sistema invia con successo il comando di approvazione alle API di Jules.
+*   [x] La UI su Telegram è consistente (il pulsante scompare post-click).
 
 ## 🏆 REGOLE D'ORO ENTERPRISE (Per lo Sviluppatore)
 Queste regole sono tassative e costituiscono la "Definition of Done" globale per l'intero progetto:
