@@ -160,7 +160,7 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
 *   Implementa `sendMessage(threadId: number, text: string, options?: any)`. Aggiungi il supporto per specificare il `message_thread_id` nelle chiamate `sendMessage` per assicurarti che i messaggi finiscano nel sub-topic corretto.
 **Dipendenze:** TSK-1.1
 **Acceptance Criteria:**
-*   [ ] Interfacce Telegram implementate correttamente e validate.
+*   [x] Interfacce Telegram implementate correttamente e validate.
 
 ### [TSK-4.2] Route Webhook Jules (Nuovi Repository)
 **Obiettivo:** Intercettare gli eventi da Jules quando viene aggiunto un nuovo repository e preparare l'infrastruttura Telegram.
@@ -174,8 +174,8 @@ Non stai scrivendo uno script amatoriale. Ogni riga di codice deve prevedere:
     *   Invia un messaggio di benvenuto nel Topic tramite Telegram: "🟢 Inizializzazione Cockpit per il repo: `{repo_name}` completata. Usa `/new` per avviare una sessione."
 **Dipendenze:** TSK-4.1, TSK-1.3
 **Acceptance Criteria:**
-*   [ ] Il webhook processa l'evento in modo asincrono per non bloccare Jules.
-*   [ ] I dati vengono persistiti correttamente su D1.
+*   [x] Il webhook processa l'evento in modo asincrono per non bloccare Jules.
+*   [x] I dati vengono persistiti correttamente su D1.
 
 ## 🔀 FASE 5: Routing Comandi e Macchina a Stati delle Sessioni
 
