@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS sessions (
   status TEXT,
   created_at DATETIME,
   updated_at DATETIME,
+  last_activity_count INTEGER DEFAULT 0,
   FOREIGN KEY (telegram_topic_id) REFERENCES repositories(telegram_topic_id)
 );
 
