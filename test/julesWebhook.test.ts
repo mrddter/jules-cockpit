@@ -1,15 +1,18 @@
 import { describe, it, expect, vi } from 'vitest';
 import { Hono } from 'hono';
+import type { ExecutionContext } from '@cloudflare/workers-types';
 import { julesWebhookHandler } from '../src/controllers/julesWebhook.js';
 import type { Env } from '../src/index.js';
 
 vi.mock('../src/telegram/bot.js', () => {
   return {
-    TelegramBot: vi.fn().mockImplementation(function() { return {
-      createForumTopic: vi.fn().mockResolvedValue(42),
-      sendMessage: vi.fn().mockResolvedValue(true)
-    }; })
-
+    // biome-ignore lint/complexity/useArrowFunction: Vitest mock requires a constructor function
+    TelegramBot: vi.fn().mockImplementation(function() {
+      return {
+        createForumTopic: vi.fn().mockResolvedValue(42),
+        sendMessage: vi.fn().mockResolvedValue(true)
+      };
+    })
   };
 });
 
@@ -20,10 +23,10 @@ describe('julesWebhookHandler', () => {
     return app;
   };
 
-  const createEnv = (db: any): Env => ({
+  const createEnv = (db: unknown): Env => ({
     TELEGRAM_BOT_TOKEN: 'mock-token',
     TELEGRAM_SUPERGROUP_ID: 'mock-group',
-    DB: db,
+    DB: db as D1Database,
     JULES_API_KEY: 'mock-key',
   });
 
@@ -37,11 +40,11 @@ describe('julesWebhookHandler', () => {
       body: JSON.stringify({ event: 'other.event' }),
     });
 
-    let waitUntilPromise: Promise<void> | undefined;
+    let _waitUntilPromise: Promise<void> | undefined;
     const ctx = {
-      waitUntil: (p: Promise<void>) => { waitUntilPromise = p; },
+      waitUntil: (p: Promise<void>) => { _waitUntilPromise = p; },
       passThroughOnException: () => {}
-    } as any;
+    } as unknown as ExecutionContext;
 
     const res = await app.fetch(req, env, ctx);
     expect(res.status).toBe(200);
@@ -68,7 +71,7 @@ describe('julesWebhookHandler', () => {
     const ctx = {
       waitUntil: (p: Promise<void>) => { waitUntilPromise = p; },
       passThroughOnException: () => {}
-    } as any;
+    } as unknown as ExecutionContext;
 
     const res = await app.fetch(req, env, ctx);
     expect(res.status).toBe(200);
@@ -93,11 +96,11 @@ describe('julesWebhookHandler', () => {
       body: 'invalid-json',
     });
 
-    let waitUntilPromise: Promise<void> | undefined;
+    let _waitUntilPromise: Promise<void> | undefined;
     const ctx = {
-      waitUntil: (p: Promise<void>) => { waitUntilPromise = p; },
+      waitUntil: (p: Promise<void>) => { _waitUntilPromise = p; },
       passThroughOnException: () => {}
-    } as any;
+    } as unknown as ExecutionContext;
 
     const res = await app.fetch(req, env, ctx);
     expect(res.status).toBe(400);
