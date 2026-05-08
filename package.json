@@ -4,6 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"build": "tsc --noEmit",
+		"deploy": "wrangler deploy",
 		"lint": "biome lint .",
 		"format": "biome format --write .",
 		"test": "vitest run"
