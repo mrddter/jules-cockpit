@@ -1,6 +1,7 @@
 import type { Context } from "hono";
 import type { Env } from "../index.js";
 import { TelegramBot } from "../telegram/bot.js";
+import { JulesClient } from "../jules/client.js";
 
 export const telegramWebhookHandler = async (c: Context<{ Bindings: Env }>) => {
 	try {
@@ -59,7 +60,6 @@ export const telegramWebhookHandler = async (c: Context<{ Bindings: Env }>) => {
 
 					if (sessionId) {
 						try {
-							const { JulesClient } = await import("../jules/client.js");
 							const julesClient = new JulesClient(c.env.JULES_API_KEY);
 							await julesClient.approvePlan(sessionId);
 
@@ -143,8 +143,6 @@ export const telegramWebhookHandler = async (c: Context<{ Bindings: Env }>) => {
 						c.executionCtx.waitUntil(
 							(async () => {
 								try {
-									// Importiamo dinamicamente JulesClient per evitare cicli se necessario, ma lo aggiungeremo in testa
-									const { JulesClient } = await import("../jules/client.js");
 									const julesClient = new JulesClient(c.env.JULES_API_KEY);
 									const session = await julesClient.createSession(
 										repoName,
@@ -313,7 +311,6 @@ export const telegramWebhookHandler = async (c: Context<{ Bindings: Env }>) => {
 			c.executionCtx.waitUntil(
 				(async () => {
 					try {
-						const { JulesClient } = await import("../jules/client.js");
 						const julesClient = new JulesClient(c.env.JULES_API_KEY);
 						await julesClient.sendUserMessage(
 							activeSession.jules_session_id,
