@@ -4,22 +4,9 @@ import type { ExecutionContext } from "@cloudflare/workers-types";
 import { telegramWebhookHandler } from "../src/controllers/telegramWebhook.js";
 import type { Env } from "../src/index.js";
 
-// Mock TelegramBot
-vi.mock("../src/telegram/bot.js", () => {
-	return {
-		// biome-ignore lint/complexity/useArrowFunction: Vitest mock requires a constructor function
-		TelegramBot: vi.fn().mockImplementation(function () {
-			return {
-				sendMessage: vi.fn().mockResolvedValue(true),
-				banChatMember: vi.fn().mockResolvedValue(true),
-			};
-		}),
-	};
-});
-
-// Mock TelegramBot
 const mockEditMessageText = vi.fn().mockResolvedValue(true);
 
+// Mock TelegramBot
 vi.mock("../src/telegram/bot.js", () => {
 	return {
 		// biome-ignore lint/complexity/useArrowFunction: Vitest mock requires a constructor function
