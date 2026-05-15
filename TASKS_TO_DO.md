@@ -277,3 +277,21 @@ Queste regole sono tassative e costituiscono la "Definition of Done" globale per
 
 ---
 *Progetto: Jules Telegram Cockpit | Ultimo aggiornamento: Oggi.*
+
+## 📚 FASE 7: Documentazione Estesa
+
+### [TSK-7.1] Preparazione documentazione in lingua italiana
+**Obiettivo:** Creare una documentazione completa e dettagliata in italiano all'interno della cartella `/docs`.
+**Dettagli Tecnici:**
+*   Crea la directory `docs/`.
+*   Aggiungi file markdown esplicativi sulle funzionalità, l'architettura e la configurazione.
+**Acceptance Criteria:**
+*   [x] Cartella `/docs` creata con almeno una guida completa in formato markdown.
+
+### [TSK-7.2] Guida rapida all'uso in README
+**Obiettivo:** Aggiungere una guida a passi brevi nel README su come iniziare a usare il bot.
+**Dettagli Tecnici:**
+*   Aggiorna `README.md` aggiungendo una sezione "Guida Rapida" (Quickstart).
+*   Spiega i comandi essenziali in sequenza.
+**Acceptance Criteria:**
+*   [x] `README.md` aggiornato con le istruzioni base.

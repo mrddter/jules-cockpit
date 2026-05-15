@@ -17,6 +17,21 @@ The application requires the following environment variables (configured via Clo
 - `TELEGRAM_SUPERGROUP_ID`: The ID of the Telegram Supergroup where the bot operates.
 - `JULES_API_KEY`: The API key to authenticate with the Jules API.
 
+## Quickstart Guide / Guida Rapida
+
+**Step 1:** Add the bot to your Telegram Supergroup (ensure Forum feature is enabled). The bot will automatically kick unauthorized users, so ensure your Telegram ID is seeded in the D1 database.
+
+**Step 2:** When a new repository is tracked by Jules, the bot will automatically create a new dedicated **Topic** for it in the Supergroup.
+
+**Step 3:** Enter the new Topic. Start working with Jules by typing `/new`.
+*Example: `/new Analyze the recent memory leak issues.`*
+
+**Step 4:** Interact normally. Type messages in the Topic chat to talk to Jules. The bot forwards your text.
+
+**Step 5:** If Jules proposes a plan, click the **✅ Approva** (Approve) button directly in the chat to authorize execution.
+
+**Step 6:** When finished, type `/close` to archive the session. You can list past sessions using `/list`.
+
 ## Telegram Commands
 
 The following commands are available within repository topics:
