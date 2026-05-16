@@ -36,3 +36,8 @@
 * **Action:** Added extended documentation.
 * **Problem/Context:** User requested Italian base documentation in `/docs` and a quickstart usage guide in `README.md`.
 * **Solution:** Created `docs/guida_completa.md` detailing the architecture, security, and session management. Appended a Quickstart Guide to `README.md` and checked off TSK-7.1 and TSK-7.2 in `TASKS_TO_DO.md`. This fulfills Phase 7 of development.
+
+## Date: Current (Test Fixing)
+* **Action:** Fixed test warnings and compilation errors.
+* **Problem/Context:** There were console logs visible during test execution, and resolving them created a linting error (unused variable), which then caused a TypeScript compilation issue when resolving the linting error.
+* **Solution:** Silenced expected console logs in `test/telegram.test.ts` and `test/julesWebhook.test.ts` using `const _consoleErrorMock = vi.spyOn(console, "error").mockImplementation(() => {});` to ensure tests run cleanly without polluting the console, pass TypeScript compilation, and don't trigger `biome` lint errors.

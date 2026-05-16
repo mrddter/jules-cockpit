@@ -4,6 +4,8 @@ import type { ExecutionContext } from "@cloudflare/workers-types";
 import { julesWebhookHandler } from "../src/controllers/julesWebhook.js";
 import type { Env } from "../src/index.js";
 
+const _consoleErrorMock = vi.spyOn(console, "error").mockImplementation(() => {});
+
 vi.mock("../src/telegram/bot.js", () => {
 	return {
 		// biome-ignore lint/complexity/useArrowFunction: Vitest mock requires a constructor function
