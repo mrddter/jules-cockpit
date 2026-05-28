@@ -68,3 +68,8 @@
   - Punto 5 superato (documentazione italiana aggiunta in `docs/` e Quickstart in `README.md`).
   - Punti 6-7 superati (Codice refrattorizzato in precedenza con caricamento statico per performance; zero vulnerabilità o modifiche necessarie).
   - Punto 8 superato. Avendo valutato positivamente l'intero sistema, si conferma formalmente che non sono richieste altre azioni. Il progetto risulta essere un prodotto stabile e finito.
+
+## Date: Current (Security Fix - Jules Webhook)
+* **Action:** Fixed security vulnerability in Jules Webhook.
+* **Problem/Context:** During the Point 7 (Security) evaluation, it was discovered that the `/webhook/jules` route did not authenticate requests coming from Jules, leaving it open to potential abuse from unauthorized sources if the webhook URL was discovered.
+* **Solution:** Added an `Authorization` header check in `src/controllers/julesWebhook.ts` to ensure that the request contains the valid Bearer token (`JULES_API_KEY`). Requests without or with an invalid token now correctly receive a 401 Unauthorized response. Also updated tests in `test/julesWebhook.test.ts` to verify the fix.

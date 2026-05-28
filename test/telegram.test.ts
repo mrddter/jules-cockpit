@@ -1,7 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { TelegramBot } from "../src/telegram/bot.js";
 
-const _consoleErrorMock = vi.spyOn(console, "error").mockImplementation(() => {});
+const _consoleErrorMock = vi
+	.spyOn(console, "error")
+	.mockImplementation(() => {});
 
 describe("TelegramBot", () => {
 	const mockToken = "test-token";

@@ -4,7 +4,9 @@ import type { ExecutionContext } from "@cloudflare/workers-types";
 import { julesWebhookHandler } from "../src/controllers/julesWebhook.js";
 import type { Env } from "../src/index.js";
 
-const _consoleErrorMock = vi.spyOn(console, "error").mockImplementation(() => {});
+const _consoleErrorMock = vi
+	.spyOn(console, "error")
+	.mockImplementation(() => {});
 
 vi.mock("../src/telegram/bot.js", () => {
 	return {
@@ -32,13 +34,40 @@ describe("julesWebhookHandler", () => {
 		JULES_API_KEY: "mock-key",
 	});
 
-	it("should return 200 OK for valid payload", async () => {
+	it("should return 401 Unauthorized for missing or invalid token", async () => {
 		const app = createTestApp();
 		const env = createEnv({});
 
 		const req = new Request("http://localhost/webhook/jules", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ event: "other.event" }),
+		});
+
+		let _waitUntilPromise: Promise<void> | undefined;
+		const ctx = {
+			waitUntil: (p: Promise<void>) => {
+				_waitUntilPromise = p;
+			},
+			passThroughOnException: () => {},
+		} as unknown as ExecutionContext;
+
+		const res = await app.fetch(req, env, ctx);
+		expect(res.status).toBe(401);
+		const data = await res.json();
+		expect(data).toEqual({ error: "Unauthorized" });
+	});
+
+	it("should return 200 OK for valid payload", async () => {
+		const app = createTestApp();
+		const env = createEnv({});
+
+		const req = new Request("http://localhost/webhook/jules", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer mock-key"
+			},
 			body: JSON.stringify({ event: "other.event" }),
 		});
 
@@ -67,7 +96,10 @@ describe("julesWebhookHandler", () => {
 
 		const req = new Request("http://localhost/webhook/jules", {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer mock-key"
+			},
 			body: JSON.stringify({
 				event: "repository.added",
 				repo_name: "test-repo",
@@ -101,7 +133,10 @@ describe("julesWebhookHandler", () => {
 
 		const req = new Request("http://localhost/webhook/jules", {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer mock-key"
+			},
 			body: "invalid-json",
 		});
 

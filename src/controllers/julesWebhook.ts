@@ -4,6 +4,11 @@ import type { Env } from "../index.js";
 
 export const julesWebhookHandler = async (c: Context<{ Bindings: Env }>) => {
 	try {
+		const authHeader = c.req.header("Authorization");
+		if (!authHeader || authHeader !== `Bearer ${c.env.JULES_API_KEY}`) {
+			return c.json({ error: "Unauthorized" }, 401);
+		}
+
 		const body = await c.req.json();
 
 		if (body.event === "repository.added") {
