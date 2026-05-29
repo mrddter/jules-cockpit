@@ -73,3 +73,8 @@
 * **Action:** Fixed security vulnerability in Jules Webhook.
 * **Problem/Context:** During the Point 7 (Security) evaluation, it was discovered that the `/webhook/jules` route did not authenticate requests coming from Jules, leaving it open to potential abuse from unauthorized sources if the webhook URL was discovered.
 * **Solution:** Added an `Authorization` header check in `src/controllers/julesWebhook.ts` to ensure that the request contains the valid Bearer token (`JULES_API_KEY`). Requests without or with an invalid token now correctly receive a 401 Unauthorized response. Also updated tests in `test/julesWebhook.test.ts` to verify the fix.
+
+## Date: Current (Phase 8 Initialization)
+* **Action:** Evaluated the project according to Point 8 (NO ACTION).
+* **Problem/Context:** All 7 phases were previously completed. Under point 8, the system must evaluate if the flow is complete for all roles, fully bootstrappable in a sandbox, and ready as a finished product. Currently, the Telegram webhook setup is a manual process requiring an external curl command, which breaks the seamless bootstrapping requirement.
+* **Solution:** Appended "FASE 8: Ottimizzazione Flusso di Avvio e Rilascio" with TSK-8.1 to `TASKS_TO_DO.md` to implement an automatic `/setup-webhook` route. The evaluation step is complete, moving back to phase 3/4 development flow in the next cycle.

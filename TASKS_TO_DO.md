@@ -295,3 +295,14 @@ Queste regole sono tassative e costituiscono la "Definition of Done" globale per
 *   Spiega i comandi essenziali in sequenza.
 **Acceptance Criteria:**
 *   [x] `README.md` aggiornato con le istruzioni base.
+
+## 🚀 FASE 8: Ottimizzazione Flusso di Avvio e Rilascio
+
+### [TSK-8.1] Route Automatica per Setup Webhook Telegram
+**Obiettivo:** Rendere la piattaforma completamente avviabile in sandbox/produzione facilitando l'impostazione del webhook di Telegram senza script esterni.
+**Dettagli Tecnici:**
+*   Aggiungi un endpoint GET `/setup-webhook` protetto da un header segreto.
+*   Questa rotta chiamerà l'API di Telegram `setWebhook` passando l'URL base del worker (es. `https://<worker-url>/webhook/telegram`).
+**Acceptance Criteria:**
+*   [ ] Endpoint `/setup-webhook` creato e protetto.
+*   [ ] Aggiornare README.md con le istruzioni su come chiamarlo.
