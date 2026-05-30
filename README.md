@@ -21,16 +21,21 @@ The application requires the following environment variables (configured via Clo
 
 **Step 1:** Add the bot to your Telegram Supergroup (ensure Forum feature is enabled). The bot will automatically kick unauthorized users, so ensure your Telegram ID is seeded in the D1 database.
 
-**Step 2:** When a new repository is tracked by Jules, the bot will automatically create a new dedicated **Topic** for it in the Supergroup.
+**Step 2:** Configure your Telegram webhook by making a request to the setup endpoint with your secret header. E.g.:
+```bash
+curl -H "X-Webhook-Secret: YOUR_SECRET_HERE" https://your-worker-url.workers.dev/setup-webhook
+```
 
-**Step 3:** Enter the new Topic. Start working with Jules by typing `/new`.
+**Step 3:** When a new repository is tracked by Jules, the bot will automatically create a new dedicated **Topic** for it in the Supergroup.
+
+**Step 4:** Enter the new Topic. Start working with Jules by typing `/new`.
 *Example: `/new Analyze the recent memory leak issues.`*
 
-**Step 4:** Interact normally. Type messages in the Topic chat to talk to Jules. The bot forwards your text.
+**Step 5:** Interact normally. Type messages in the Topic chat to talk to Jules. The bot forwards your text.
 
-**Step 5:** If Jules proposes a plan, click the **✅ Approva** (Approve) button directly in the chat to authorize execution.
+**Step 6:** If Jules proposes a plan, click the **✅ Approva** (Approve) button directly in the chat to authorize execution.
 
-**Step 6:** When finished, type `/close` to archive the session. You can list past sessions using `/list`.
+**Step 7:** When finished, type `/close` to archive the session. You can list past sessions using `/list`.
 
 ## Telegram Commands
 

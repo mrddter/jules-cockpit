@@ -78,3 +78,15 @@
 * **Action:** Evaluated the project according to Point 8 (NO ACTION).
 * **Problem/Context:** All 7 phases were previously completed. Under point 8, the system must evaluate if the flow is complete for all roles, fully bootstrappable in a sandbox, and ready as a finished product. Currently, the Telegram webhook setup is a manual process requiring an external curl command, which breaks the seamless bootstrapping requirement.
 * **Solution:** Appended "FASE 8: Ottimizzazione Flusso di Avvio e Rilascio" with TSK-8.1 to `TASKS_TO_DO.md` to implement an automatic `/setup-webhook` route. The evaluation step is complete, moving back to phase 3/4 development flow in the next cycle.
+
+## Date: Current (Phase 8 Implementation)
+* **Action:** Implemented TSK-8.1 for automatic Telegram webhook setup.
+* **Problem/Context:** In order to make the setup process smooth, we needed an endpoint to easily configure the webhook pointing to the current Cloudflare Worker URL, authenticated via a secret to prevent unauthorized tampering.
+* **Solution:**
+  - Added a `GET /setup-webhook` endpoint to `src/index.ts`.
+  - The endpoint requires an `X-Webhook-Secret` header matching the new `WEBHOOK_SETUP_SECRET` environment variable to authenticate the setup request.
+  - Dynamically builds the webhook URL (`${url.origin}/webhook/telegram`) and uses the Telegram `setWebhook` API.
+  - Fixed a potential security issue in the authorization logic (fail-open) based on code review feedback.
+  - Added `WEBHOOK_SETUP_SECRET` to the environment bindings (`src/index.ts`, `wrangler.toml`).
+  - Added unit tests in `test/setupWebhook.test.ts`.
+  - Updated documentation (`README.md`, `TASKS_TO_DO.md`).

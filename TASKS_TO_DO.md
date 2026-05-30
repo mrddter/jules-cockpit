@@ -304,5 +304,5 @@ Queste regole sono tassative e costituiscono la "Definition of Done" globale per
 *   Aggiungi un endpoint GET `/setup-webhook` protetto da un header segreto.
 *   Questa rotta chiamerà l'API di Telegram `setWebhook` passando l'URL base del worker (es. `https://<worker-url>/webhook/telegram`).
 **Acceptance Criteria:**
-*   [ ] Endpoint `/setup-webhook` creato e protetto.
-*   [ ] Aggiornare README.md con le istruzioni su come chiamarlo.
+*   [x] Endpoint `/setup-webhook` creato e protetto.
+*   [x] Aggiornare README.md con le istruzioni su come chiamarlo.

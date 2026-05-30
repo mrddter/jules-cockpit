@@ -4,13 +4,14 @@ export interface Env {
 	TELEGRAM_BOT_TOKEN: string;
 	JULES_API_KEY: string;
 	TELEGRAM_SUPERGROUP_ID: string;
+	WEBHOOK_SETUP_SECRET: string;
 	DB: D1Database;
 }
 
-import { authMiddleware } from "./middlewares/auth.js";
-import { telegramWebhookHandler } from "./controllers/telegramWebhook.js";
 import { julesWebhookHandler } from "./controllers/julesWebhook.js";
+import { telegramWebhookHandler } from "./controllers/telegramWebhook.js";
 import { JulesClient } from "./jules/client.js";
+import { authMiddleware } from "./middlewares/auth.js";
 import { TelegramBot } from "./telegram/bot.js";
 
 const app = new Hono<{ Bindings: Env }>();
@@ -21,6 +22,37 @@ const escapeMarkdownV2 = (text: string) => {
 };
 
 app.get("/", (c) => c.text("Jules Telegram Cockpit OK"));
+
+app.get("/setup-webhook", async (c) => {
+	const secretHeader = c.req.header("X-Webhook-Secret");
+	if (!c.env.WEBHOOK_SETUP_SECRET || secretHeader !== c.env.WEBHOOK_SETUP_SECRET) {
+		return c.json({ error: "Unauthorized" }, 401);
+	}
+
+	const url = new URL(c.req.url);
+	const webhookUrl = `${url.origin}/webhook/telegram`;
+
+	try {
+		const response = await fetch(
+			`https://api.telegram.org/bot${c.env.TELEGRAM_BOT_TOKEN}/setWebhook`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					url: webhookUrl,
+				}),
+			},
+		);
+
+		const data = await response.json();
+		return c.json(data);
+	} catch (error) {
+		console.error("Error setting webhook:", error);
+		return c.json({ error: "Failed to set webhook" }, 500);
+	}
+});
 
 app.post("/webhook/telegram", authMiddleware, telegramWebhookHandler);
 
