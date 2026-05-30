@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest";
 import { Hono } from "hono";
-import { authMiddleware } from "../src/middlewares/auth.js";
+import { describe, expect, it } from "vitest";
 import type { Env } from "../src/index.js";
+import { authMiddleware } from "../src/middlewares/auth.js";
 
 describe("Auth Middleware", () => {
 	const createMockDb = (userExists: boolean) => {

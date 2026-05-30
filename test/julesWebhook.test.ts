@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
-import { Hono } from "hono";
 import type { ExecutionContext } from "@cloudflare/workers-types";
+import { Hono } from "hono";
+import { describe, expect, it, vi } from "vitest";
 import { julesWebhookHandler } from "../src/controllers/julesWebhook.js";
 import type { Env } from "../src/index.js";
 
@@ -66,7 +66,7 @@ describe("julesWebhookHandler", () => {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": "Bearer mock-key"
+				Authorization: "Bearer mock-key",
 			},
 			body: JSON.stringify({ event: "other.event" }),
 		});
@@ -98,7 +98,7 @@ describe("julesWebhookHandler", () => {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": "Bearer mock-key"
+				Authorization: "Bearer mock-key",
 			},
 			body: JSON.stringify({
 				event: "repository.added",
@@ -135,7 +135,7 @@ describe("julesWebhookHandler", () => {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": "Bearer mock-key"
+				Authorization: "Bearer mock-key",
 			},
 			body: "invalid-json",
 		});

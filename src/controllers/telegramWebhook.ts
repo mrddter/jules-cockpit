@@ -1,7 +1,7 @@
 import type { Context } from "hono";
 import type { Env } from "../index.js";
-import { TelegramBot } from "../telegram/bot.js";
 import { JulesClient } from "../jules/client.js";
+import { TelegramBot } from "../telegram/bot.js";
 
 export const telegramWebhookHandler = async (c: Context<{ Bindings: Env }>) => {
 	try {

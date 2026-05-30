@@ -1,6 +1,6 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { Hono } from "hono";
 import type { ExecutionContext } from "@cloudflare/workers-types";
+import { Hono } from "hono";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { telegramWebhookHandler } from "../src/controllers/telegramWebhook.js";
 import type { Env } from "../src/index.js";
 
