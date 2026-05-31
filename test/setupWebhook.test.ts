@@ -72,7 +72,8 @@ describe("Setup Webhook Route", () => {
 		expect(data).toEqual({ ok: true, result: true });
 
 		expect(fetchMock).toHaveBeenCalledTimes(1);
-		const [url, options] = fetchMock.mock.calls[0];
+		// biome-ignore lint/style/noNonNullAssertion: safe here since toHaveBeenCalledTimes is checked
+		const [url, options] = fetchMock.mock.calls[0]!;
 		expect(url).toBe(
 			`https://api.telegram.org/bot${MOCK_ENV.TELEGRAM_BOT_TOKEN}/setWebhook`,
 		);

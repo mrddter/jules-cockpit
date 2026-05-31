@@ -65,6 +65,7 @@ describe("telegramWebhookHandler (Phase 5)", () => {
 			TELEGRAM_SUPERGROUP_ID: "mock-group",
 			DB: mockDb as D1Database,
 			JULES_API_KEY: "mock-jules-key",
+			WEBHOOK_SETUP_SECRET: "mock-secret",
 		};
 
 		app = new Hono<{ Bindings: Env }>();
