@@ -32,6 +32,7 @@ describe("julesWebhookHandler", () => {
 		TELEGRAM_SUPERGROUP_ID: "mock-group",
 		DB: db as D1Database,
 		JULES_API_KEY: "mock-key",
+		WEBHOOK_SETUP_SECRET: "mock-secret",
 	});
 
 	it("should return 401 Unauthorized for missing or invalid token", async () => {
